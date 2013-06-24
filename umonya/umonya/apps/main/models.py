@@ -1,3 +1,4 @@
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils import timezone
 from time import time
@@ -21,16 +22,28 @@ class Announcement(models.Model):
         max_length = 200,
         unique = True)
     body = models.TextField()
-
     pub_date = models.DateField(
         "Date Published",
         default = timezone.now().date(),
         editable = False)
     event_date = models.DateTimeField(
         "Event Date",
-        default = timezone.now())
+        default = timezone.now(),
+        blank=True)
     venue = models.CharField(max_length = 300, blank=True)
     slug = models.SlugField(editable = False)
+
+    def is_valid_date(self):
+        """ Checks if event date has passed """
+        if (self.event_date.date() < self.pub_date):
+            return False
+        return True
+
+    def is_space(self, field):
+        """ Checks if field is only whitespace """
+        if field.isspace():
+            return True
+        return False
 
     class Meta:
         ordering = ["-pub_date"]
@@ -38,18 +51,22 @@ class Announcement(models.Model):
     def __unicode__(self):
         return u"%s %s" % (self.title, self.pub_date)
 
+    def clean(self):
+        if not self.is_valid_date():
+            raise ValidationError(u'Event date is not valid!', code="invalid")
+
+        if self.is_space(self.title):
+            raise ValidationError(u"Title seems to be empty!", code="invalid")
+
+        if self.is_space(self.body):
+            raise ValidationError(u"Body seems to be empty!", code="invalid")
+
     def save(self):
         '''
-        Custom save function sets Date Published to current time on save
+            Custom save function sets Date Published to current time on save
         '''
         self.slug = self.title.replace(" ","_")
         super(Announcement, self).save()
-
-    def is_valid_date(self):
-        """ Checks if event date has passed """
-        if (self.event_date.date() < self.pub_date):
-            return False
-        return True
 
 
 class About(models.Model):

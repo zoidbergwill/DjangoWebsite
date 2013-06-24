@@ -9,8 +9,7 @@
   <div class="span8">
 
   <a href="{{ page_number }}{{ announcement.slug }}">
-
-  <h2>{{ announcement.title }}</h2></a>
+    <h2>{{ announcement.title }}</h2></a>
 
   <ul>
     <li>
@@ -18,7 +17,7 @@
         <small>Created on {{ announcement.pub_date }}</small>
       </p>
       <p>
-        {{ announcement.body}}
+        {{ announcement.body|safe}}
       </p>
     </li>
   </ul>
@@ -31,4 +30,4 @@
     </li>
   </ul>
 
-{% endblock %} 
+{% endblock %}
