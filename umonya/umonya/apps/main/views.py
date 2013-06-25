@@ -1,9 +1,10 @@
+from time import *
 from django.shortcuts import render_to_response, get_object_or_404
-from models import About, Page, Dynamic_Section, Announcement
-from forms import RegistrationForm
 from django.http import HttpResponseRedirect
 from django.core.context_processors import csrf
 from django.template import RequestContext
+from models import *
+from forms import RegistrationForm
 
 def home(request, page_number=1):
     """
@@ -49,8 +50,8 @@ def home(request, page_number=1):
 
 def view_announcement(request, page_number, slug):
     """
-        Renders the view_announcement.html view which is used 
-        to show announcements 
+        Renders the view_announcement.html view which is used
+        to show announcements
         i.e. url path is www.umonya.org/announcements/<page_number><slug> .
         The announcement is found by the slug stored in the database
     """
@@ -63,7 +64,7 @@ def view_announcement(request, page_number, slug):
 
 def custom_404(request, page_number, slug):
     """
-        Renders the custom_404.html view which is used 
+        Renders the custom_404.html view which is used
         if the page is not found
         i.e. url path is www.umonya.org/something .
     """
@@ -77,9 +78,50 @@ def about(request):
                               "page_content": page_content},
                               context_instance=RequestContext(request))
 
-
 def resources(request):
-    return render_to_response("resources.html", context_instance=RequestContext(request))
+    """
+        Renders resources.html view, with links to notes,
+        Displays up coming event, with schedule
+        Displays soonest event only
+
+        Stores data:
+            Event Name
+
+            day 1
+                sub events / schedule
+                ...
+            day 2
+                sub events / schedule
+                ...
+    """
+    notes = Note.objects.order_by("title")
+
+    # this can be used to show only events that haven't passed
+    # events_all = Event.objects.exclude(date_end__lte=timezone.now().date()).order_by("-date_start")
+    events_all = Event.objects.all().order_by("-date_start")[0]
+
+    events = {}
+    event_name = ""
+
+    if events_all:
+        sub_events = SubEvent.objects.filter(parent_event=events_all).order_by("time")
+
+        event_name = events_all.title
+
+        for i in sub_events:
+            date_string = i.date.strftime("%d %B")
+            if date_string in events.keys():
+                pass
+            else:
+                events[date_string] = []
+            sub_event_time = i.time.strftime("%H:%M")
+            # sub_event_time = "%2s:%2s" % (i.time.hour, i.time.minute)
+            sub_event_title = i.title
+            events[date_string].append((" ".join([sub_event_time, sub_event_title])))
+
+    return render_to_response("resources.html",
+        {"notes":notes, "events": events, "event_name": event_name},
+        context_instance=RequestContext(request))
 
 
 def registration(request):

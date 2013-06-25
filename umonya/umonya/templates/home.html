@@ -1,7 +1,8 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 {% block slideshow %}
-<div id="myCarousel" class="grid_10 prefix_1 carousel slide">
+<div class="row">
+<div id="myCarousel" class="span10 prefix_1 carousel slide">
   <ol class="carousel-indicators">
     <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
     <li data-target="#myCarousel" data-slide-to="1"></li>
@@ -30,6 +31,7 @@
   <!-- Carousel nav -->
   <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
   <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+</div>
 </div>
 {% endblock %}
 

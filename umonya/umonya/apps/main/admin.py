@@ -1,6 +1,5 @@
 from django.contrib import admin
-from models import Announcement, About, Page, Registration, Dynamic_Section
-
+from models import *
 #~ Ensuring that admin is aware of this class
 
 class AnnouncementAdmin(admin.ModelAdmin):
@@ -10,8 +9,14 @@ class AnnouncementAdmin(admin.ModelAdmin):
     odering = ("pub_date")
     fields = ("title", "body", "event_date","venue")
 
-admin.site.register(Announcement, AnnouncementAdmin)
+class EventAdmin(admin.ModelAdmin):
+    list_display = ("title", "venue", "date_end", "date_start")
+
 admin.site.register(About)
+admin.site.register(Announcement, AnnouncementAdmin)
+admin.site.register(Dynamic_Section)
+admin.site.register(Event, EventAdmin)
+admin.site.register(Note)
 admin.site.register(Page)
 admin.site.register(Registration)
-admin.site.register(Dynamic_Section)
+admin.site.register(SubEvent)

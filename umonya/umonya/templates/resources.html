@@ -1,4 +1,50 @@
 {% extends "base.html" %}
 
 {% block content %}
+
+<div class="span8">
+  <h1>Resources</h1>
+
+  <h2>Upcoming Events</h2>
+
+  {% if events %}
+    <p>
+      <h3>{{ event_name }}</h3>
+    </p>
+
+    <ul>
+    {% for key, value in events.items %}
+      <li>
+        <h3>{{ key }}</h3>
+
+        {% for sub_event in value %}
+          <p>
+            {{ sub_event }}
+          </p>
+        {% endfor %}
+      </li>
+    {% endfor %}
+    </ul>
+  {% else %}
+    <p>There are no scheduled upcoming events.</p>
+  {% endif %}
+
+  <h2>Notes</h2>
+  {% if notes %}
+    <ul>
+    {% for note in notes %}
+      <li>
+        <p>
+          <a href="{{ note.link }}">{{ note.title|safe}}</a>
+        </p>
+      </li>
+    {% endfor %}
+    </ul>
+
+  {% else %}
+    <p>There are no notes available.</p>
+  {% endif %}
+
+</div>
+
 {% endblock %}

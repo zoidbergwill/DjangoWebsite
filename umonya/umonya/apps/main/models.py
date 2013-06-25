@@ -1,4 +1,6 @@
+from django import forms
 from django.core.exceptions import ValidationError
+from django.core.validators import URLValidator
 from django.db import models
 from django.utils import timezone
 from time import time
@@ -68,6 +70,70 @@ class Announcement(models.Model):
         self.slug = self.title.replace(" ","_")
         super(Announcement, self).save()
 
+class Note(models.Model):
+    '''
+        Model for notes
+        Stores title, and url
+        Date Published set on creation.
+    '''
+    title = models.CharField(
+        max_length = 200,
+        unique = True)
+    link = models.URLField()
+    pub_date = models.DateField(
+        "Date Published",
+        default = timezone.now().date(),
+        editable = False)
+
+    class Meta:
+        ordering = ["-pub_date"]
+
+    def __unicode__(self):
+        return u"%s %s" % (self.title, self.pub_date)
+
+    def clean(self):
+        validate = URLValidator()
+        try:
+            if self.link.startswith("http://"):
+                validate(self.link)
+            else:
+                validate ("http://%s" % (self.link))
+        except ValidationError, e:
+            print e
+
+class Event(models.Model):
+    """
+        The Event Model stores upcoming events
+        default venue is uct
+    """
+    title = models.CharField(
+        max_length = 200)
+    date_start = models.DateField(
+        "Start Date",
+        default = timezone.now())
+    date_end =  models.DateField(
+        "End Date",
+        default = timezone.now())
+    venue = models.CharField(max_length = 300, blank=True)
+    def __unicode__(self):
+        return self.title
+
+
+class SubEvent(models.Model):
+    """
+        The SubEvent Model stores each sub event by time within events
+        default time is 9:00, or time of last sub event
+        default event is latest event
+    """
+    title = models.CharField(
+        max_length = 200)
+    date = models.DateField(
+        "Date",
+        default = timezone.now())
+    time = models.TimeField("Time")
+    parent_event = models.ForeignKey(Event)
+    def __unicode__(self):
+        return self.title
 
 class About(models.Model):
     """
