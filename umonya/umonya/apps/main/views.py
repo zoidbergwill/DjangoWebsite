@@ -1,9 +1,8 @@
-from time import *
 from django.shortcuts import render_to_response, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.core.context_processors import csrf
 from django.template import RequestContext
-from models import *
+from models import About, Announcement, Dynamic_Section, Event, Note, Page, Registration, SubEvent
 from forms import RegistrationForm, ContactForm
 
 def home(request, page_number=1):
@@ -96,31 +95,22 @@ def resources(request):
     """
     notes = Note.objects.order_by("title")
 
-    # this can be used to show only events that haven't passed
-    # events_all = Event.objects.exclude(date_end__lte=timezone.now().date()).order_by("-date_start")
-
-    events_all = Event.objects.all().order_by("-date_start")
-
     events = {}
     event_name = ""
 
-    if events_all:
-        # stores only latest event
-        events_all = events_all[0]
+    if Event.objects.all().order_by("-date_start").count():
+        events_all = Event.objects.all().order_by("-date_start")[0]
         sub_events = SubEvent.objects.filter(parent_event=events_all).order_by("time")
 
         event_name = events_all.title
 
         for i in sub_events:
             date_string = i.date.strftime("%d %B")
-            if date_string in events.keys():
-                pass
-            else:
+            if date_string not in events.keys():
                 events[date_string] = []
             sub_event_time = i.time.strftime("%H:%M")
-            # sub_event_time = "%2s:%2s" % (i.time.hour, i.time.minute)
             sub_event_title = i.title
-            events[date_string].append((" ".join([sub_event_time, sub_event_title])))
+            events[date_string].append(" ".join([sub_event_time, sub_event_title]))
 
     return render_to_response("resources.html",
         {"notes":notes, "events": events, "event_name": event_name},

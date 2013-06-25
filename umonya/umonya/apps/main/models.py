@@ -21,19 +21,18 @@ class Announcement(models.Model):
         Date Published set on creation.
     '''
     title = models.CharField(
-        max_length = 200,
-        unique = True)
+        max_length=200,
+        unique=True)
     body = models.TextField()
     pub_date = models.DateField(
         "Date Published",
-        default = timezone.now().date(),
-        editable = False)
+        auto_now=True)
     event_date = models.DateTimeField(
         "Event Date",
-        default = timezone.now(),
-        blank=True)
-    venue = models.CharField(max_length = 300, blank=True)
-    slug = models.SlugField(editable = False)
+        auto_now=True,
+        editable=True)
+    venue = models.CharField(max_length=300, blank=True)
+    slug = models.SlugField(editable=False)
 
     class Meta:
         ordering = ["-pub_date"]
@@ -58,26 +57,24 @@ class Announcement(models.Model):
             raise ValidationError(u"Body seems to be empty!", code="invalid")
 
     def save(self):
-        '''
-            Custom save function sets Date Published to current time on save
-        '''
+        ''' Custom save function sets Date Published to current time on save. '''
         self.slug = self.title.replace(" ","_")
         super(Announcement, self).save()
 
 class Note(models.Model):
     '''
-        Model for notes
-        Stores title, and url
+        Model for links to notes to display a list of notes
+        e.g. codecademy or github
+        Stores title, and link
         Date Published set on creation.
     '''
     title = models.CharField(
-        max_length = 200,
-        unique = True)
+        max_length=200,
+        unique=True)
     link = models.URLField()
     pub_date = models.DateField(
         "Date Published",
-        default = timezone.now().date(),
-        editable = False)
+        auto_now=True)
 
     class Meta:
         ordering = ["-pub_date"]
@@ -92,8 +89,10 @@ class Note(models.Model):
                 validate(self.link)
             else:
                 validate ("http://%s" % (self.link))
-        except ValidationError, e:
-            print e
+        except ValidationError:
+            raise ValidationError(u"Your link seems to be broken!", code="invalid")
+
+
 
 class Event(models.Model):
     """
@@ -101,17 +100,18 @@ class Event(models.Model):
         default venue is uct
     """
     title = models.CharField(
-        max_length = 200)
+        max_length=200)
     date_start = models.DateField(
         "Start Date",
-        default = timezone.now())
+        auto_now=True,
+        editable=True)
     date_end =  models.DateField(
         "End Date",
         default = timezone.now())
-    venue = models.CharField(max_length = 300, blank=True)
+    venue = models.CharField(max_length=300, blank=True)
+
     def __unicode__(self):
         return self.title
-
 
 class SubEvent(models.Model):
     """
@@ -120,12 +120,14 @@ class SubEvent(models.Model):
         default event is latest event
     """
     title = models.CharField(
-        max_length = 200)
+        max_length=200)
     date = models.DateField(
         "Date",
-        default = timezone.now())
+        auto_now=True,
+        editable=True)
     time = models.TimeField("Time")
     parent_event = models.ForeignKey(Event)
+
     def __unicode__(self):
         return self.title
 
@@ -143,7 +145,6 @@ class About(models.Model):
     def __unicode__(self):
         return self.name
 
-
 class Page(models.Model):
     """
         The Page Model is used to populate content in each of the
@@ -154,7 +155,6 @@ class Page(models.Model):
 
     def __unicode__(self):
         return self.page
-
 
 class Registration(models.Model):
     """
@@ -172,7 +172,6 @@ class Registration(models.Model):
     def __unicode__(self):
         return self.name
 
-
 class Dynamic_Section(models.Model):
     """
         Sections that can be enabled or disabled by admin such
@@ -183,7 +182,6 @@ class Dynamic_Section(models.Model):
 
     def __unicode__(self):
         return self.section
-
 
 class Contact(models.Model):
     pass
