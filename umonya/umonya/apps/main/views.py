@@ -98,12 +98,15 @@ def resources(request):
 
     # this can be used to show only events that haven't passed
     # events_all = Event.objects.exclude(date_end__lte=timezone.now().date()).order_by("-date_start")
-    events_all = Event.objects.all().order_by("-date_start")[0]
+
+    events_all = Event.objects.all().order_by("-date_start")
 
     events = {}
     event_name = ""
 
     if events_all:
+        # stores only latest event
+        events_all = events_all[0]
         sub_events = SubEvent.objects.filter(parent_event=events_all).order_by("time")
 
         event_name = events_all.title
