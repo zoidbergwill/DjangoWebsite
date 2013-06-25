@@ -1,5 +1,10 @@
 from time import *
 from django.shortcuts import render_to_response, get_object_or_404
+<<<<<<< HEAD
+=======
+from models import About, Page, Dynamic_Section, Announcement
+from forms import RegistrationForm, ContactForm
+>>>>>>> Created Contact Forms
 from django.http import HttpResponseRedirect
 from django.core.context_processors import csrf
 from django.template import RequestContext
@@ -44,8 +49,8 @@ def home(request, page_number=1):
         'total_pages': total_pages,
         'prev': prev,
         'next': next,
-        'path': path
-        })
+        'path': path,
+        }, context_instance=RequestContext(request))
 
 
 def view_announcement(request, page_number, slug):
@@ -128,16 +133,14 @@ def resources(request):
 
 
 def registration(request):
-    # pub_date = Registration(pub_date=timezone.now())
     if request.method == "POST":
-        # f = RegistrationForm(request.POST, instance=pub_date)
         f = RegistrationForm(request.POST)
 
         if f.is_valid():
             send_email_f(f)
             success = {"success": "success"}
             return render_to_response("registration.html", success,
-                              context_instance=RequestContext(request))
+                                      context_instance=RequestContext(request))
 
     else:
         f = RegistrationForm()
@@ -157,7 +160,20 @@ def registration(request):
 
 
 def contact(request):
-    return render_to_response("contact.html", context_instance=RequestContext(request))
+    if request.method == "POST":
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            send_email_f(form)
+            success = {"success": "success"}
+            return render_to_response("contact.html", success,
+                                      context_instance=RequestContext(request))
+    else:
+        form = ContactForm
+    args = {}
+    args.update(csrf(request))
+    args["form"] = form
+    return render_to_response("contact.html", args,
+                              context_instance=RequestContext(request))
 
 
 def course(request):
@@ -176,4 +192,5 @@ def send_email_f(f):
         message = message + item.upper() + "\n" + str(f.cleaned_data[item]) + "\n\n"
     sender = "umonya@admin.com"
     recipients = ["umonya@admin.com"]
-    send_mail(subject, message, sender, recipients)
+    if send_mail(subject, message, sender, recipients):
+        return True
