@@ -35,25 +35,19 @@ class Announcement(models.Model):
     venue = models.CharField(max_length = 300, blank=True)
     slug = models.SlugField(editable = False)
 
-    def is_valid_date(self):
-        """ Checks if event date has passed """
-        if (self.event_date.date() < self.pub_date):
-            return False
-        return True
-
-    def is_space(self, field):
-        """ Checks if field is only whitespace """
-        if field.isspace():
-            return True
-        return False
-
     class Meta:
         ordering = ["-pub_date"]
 
     def __unicode__(self):
         return u"%s %s" % (self.title, self.pub_date)
 
+
+    is_valid_date = lambda s: s.event_date.date() >= s.pub_date
+
+    is_space = lambda s, f: f.isspace()
+
     def clean(self):
+
         if not self.is_valid_date():
             raise ValidationError(u'Event date is not valid!', code="invalid")
 

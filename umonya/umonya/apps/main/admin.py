@@ -1,6 +1,7 @@
 from django.contrib import admin
 from models import *
-#~ Ensuring that admin is aware of this class
+
+# Ensuring that admin is aware of this class
 
 class AnnouncementAdmin(admin.ModelAdmin):
     list_display = ("title","pub_date","event_date","venue")
