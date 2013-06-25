@@ -1,15 +1,10 @@
 from time import *
 from django.shortcuts import render_to_response, get_object_or_404
-<<<<<<< HEAD
-=======
-from models import About, Page, Dynamic_Section, Announcement
-from forms import RegistrationForm, ContactForm
->>>>>>> Created Contact Forms
 from django.http import HttpResponseRedirect
 from django.core.context_processors import csrf
 from django.template import RequestContext
 from models import *
-from forms import RegistrationForm
+from forms import RegistrationForm, ContactForm
 
 def home(request, page_number=1):
     """
