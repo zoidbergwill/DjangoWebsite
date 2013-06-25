@@ -2,7 +2,7 @@ from django.shortcuts import render_to_response, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.core.context_processors import csrf
 from django.template import RequestContext
-from models import About, Announcement, Dynamic_Section, Event, Note, Page, Registration, SubEvent
+from models import About, Announcement, Dynamic_Section, Event, Note, Page, SubEvent
 from forms import RegistrationForm, ContactForm
 
 def home(request, page_number=1):
@@ -110,7 +110,7 @@ def resources(request):
                 events[date_string] = []
             sub_event_time = i.time.strftime("%H:%M")
             sub_event_title = i.title
-            events[date_string].append(" ".join([sub_event_time, sub_event_title]))
+            events[date_string].append([sub_event_time, sub_event_title])
 
     return render_to_response("resources.html",
         {"notes":notes, "events": events, "event_name": event_name},

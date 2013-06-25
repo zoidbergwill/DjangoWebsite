@@ -31,7 +31,10 @@ class Announcement(models.Model):
         "Event Date",
         auto_now=True,
         editable=True)
-    venue = models.CharField(max_length=300, blank=True)
+    venue = models.CharField(
+        max_length=300,
+        default="UCT",
+        blank=True)
     slug = models.SlugField(editable=False)
 
     class Meta:
@@ -43,17 +46,15 @@ class Announcement(models.Model):
 
     is_valid_date = lambda s: s.event_date.date() >= s.pub_date
 
-    is_space = lambda s, f: f.isspace()
-
     def clean(self):
 
         if not self.is_valid_date():
             raise ValidationError(u'Event date is not valid!', code="invalid")
 
-        if self.is_space(self.title):
+        if self.title.is_space():
             raise ValidationError(u"Title seems to be empty!", code="invalid")
 
-        if self.is_space(self.body):
+        if self.body.is_space():
             raise ValidationError(u"Body seems to be empty!", code="invalid")
 
     def save(self):

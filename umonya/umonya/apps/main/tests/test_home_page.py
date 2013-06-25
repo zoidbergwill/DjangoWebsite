@@ -32,11 +32,3 @@ class TestClean(TestCase):
         event_date = datetime.datetime(year, month, day, 12, 0, 0)
         test = Announcement(pub_date=pub_date, event_date=event_date)
         self.assertEqual(False, test.is_valid_date())
-
-    def test_is_space_title_string(self):
-        test = Announcement(title="Test String")
-        self.assertEqual(False, test.is_space(test.title))
-
-    def test_is_space_body_string(self):
-        test = Announcement(body="Test String")
-        self.assertEqual(False, test.is_space(test.body))

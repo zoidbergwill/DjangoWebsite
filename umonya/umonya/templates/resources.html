@@ -5,9 +5,10 @@
 <div class="span8">
   <h1>Resources</h1>
 
-  <h2>Upcoming Events</h2>
-
   {% if events %}
+
+    <h2>Upcoming Events</h2>
+
     <p>
       <h3>{{ event_name }}</h3>
     </p>
@@ -19,7 +20,7 @@
 
         {% for sub_event in value %}
           <p>
-            {{ sub_event }}
+            {{ sub_event[0] }} {{ sub_event[1] }}
           </p>
         {% endfor %}
       </li>
