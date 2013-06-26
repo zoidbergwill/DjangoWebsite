@@ -22,8 +22,10 @@ class Announcement(models.Model):
     '''
     title = models.CharField(
         max_length=200,
-        unique=True)
-    body = models.TextField()
+        unique=True,
+        blank=False)
+    body = models.TextField(
+        blank=False,)
     pub_date = models.DateField(
         "Date Published",
         auto_now=True)
