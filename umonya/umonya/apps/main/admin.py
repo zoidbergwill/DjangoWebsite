@@ -1,6 +1,6 @@
 from django.contrib import admin
-from models import About, Announcement, Dynamic_Section, Event, Note, Page, 
-	Registration, SubEvent
+from models import About, Announcement, Dynamic_Section, Event, Note, Page, \
+Registration, SubEvent
 
 # Ensuring that admin is aware of this class
 
