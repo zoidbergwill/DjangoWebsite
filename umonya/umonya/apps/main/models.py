@@ -55,18 +55,25 @@ class Announcement(models.Model):
         if self.event_date:
             if not self.is_valid_date():
                 logging.debug('Someone tried to set an invalid date.')
-                raise ValidationError(u'Event date is not valid!', code='invalid')
+                raise ValidationError(u'Event date is not valid!', 
+                    code='invalid')
 
         if self.title.isspace():
-            raise ValidationError(u'Title seems to be empty!', code='invalid')
+            raise ValidationError(u'Title seems to be empty!', 
+                code='invalid')
 
         if self.body.isspace():
-            raise ValidationError(u'Body seems to be empty!', code='invalid')
+            raise ValidationError(u'Body seems to be empty!', 
+                code='invalid')
 
         logging.debug('Successful clean.')
 
     def save(self):
-        ''' Custom save function sets Date Published to current time on save. '''
+        ''' 
+            Custom save function 
+            Sets Date Published to current time on save.
+            Creates slug from title 
+        '''
         logging.debug('Successful save.')
         self.slug = self.title.replace(' ', '_')
         super(Announcement, self).save()
@@ -101,7 +108,8 @@ class Note(models.Model):
             else:
                 validate('http://%s' % (self.link))
         except ValidationError:
-            raise ValidationError(u'Your link seems to be broken!', code='invalid')
+            raise ValidationError(u'Your link seems to be broken!', 
+                code='invalid')
 
 
 class Event(models.Model):

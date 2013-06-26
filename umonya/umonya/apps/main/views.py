@@ -2,7 +2,8 @@ from django.shortcuts import render_to_response, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.core.context_processors import csrf
 from django.template import RequestContext
-from models import About, Announcement, Dynamic_Section, Event, Note, Page, SubEvent
+from models import About, Announcement, Dynamic_Section, Event, Note, Page,
+SubEvent
 from forms import RegistrationForm, ContactForm
 
 
@@ -101,7 +102,8 @@ def resources(request):
 
     if Event.objects.all().order_by('-date_start').count():
         events_all = Event.objects.all().order_by('-date_start')[0]
-        sub_events = SubEvent.objects.filter(parent_event=events_all).order_by('time')
+        sub_events = SubEvent.objects.filter(
+            parent_event=events_all).order_by('time')
 
         event_name = events_all.title
 
@@ -127,8 +129,9 @@ def registration(request):
         if f.is_valid():
             send_email_f(f)
             success = {'success': 'success'}
-            return render_to_response('registration.html', success,
-                                      context_instance=RequestContext(request))
+            return render_to_response(
+                'registration.html', success,
+                context_instance=RequestContext(request))
 
     else:
         f = RegistrationForm()
@@ -143,8 +146,10 @@ def registration(request):
     args['section'] = section
     args['form'] = f
 
-    return render_to_response('registration.html', args,
-                              context_instance=RequestContext(request))
+    return render_to_response(
+        'registration.html',
+        args,
+        context_instance=RequestContext(request))
 
 
 def contact(request):
@@ -153,23 +158,31 @@ def contact(request):
         if form.is_valid():
             send_email_f(form)
             success = {'success': 'success'}
-            return render_to_response('contact.html', success,
-                                      context_instance=RequestContext(request))
+            return render_to_response(
+                'contact.html',
+                success,
+                context_instance=RequestContext(request))
     else:
         form = ContactForm
     args = {}
     args.update(csrf(request))
     args['form'] = form
-    return render_to_response('contact.html', args,
-                              context_instance=RequestContext(request))
+    return render_to_response(
+        'contact.html',
+        args,
+        context_instance=RequestContext(request))
 
 
 def course(request):
-    return render_to_response('course.html', context_instance=RequestContext(request))
+    return render_to_response(
+        'course.html',
+        context_instance=RequestContext(request))
 
 
 def blog(request):
-    return render_to_response('blog.html', context_instance=RequestContext(request))
+    return render_to_response(
+        'blog.html',
+        context_instance=RequestContext(request))
 
 
 def send_email_f(f):
@@ -177,7 +190,8 @@ def send_email_f(f):
     subject = 'User Registration'
     message = ''
     for item in f.cleaned_data:
-        message = message + item.upper() + '\n' + str(f.cleaned_data[item]) + '\n\n'
+        message = (
+            message + item.upper() + '\n' + str(f.cleaned_data[item]) + '\n\n')
     sender = 'umonya@admin.com'
     recipients = ['umonya@admin.com']
     if send_mail(subject, message, sender, recipients):
