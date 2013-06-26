@@ -31,8 +31,7 @@ class Announcement(models.Model):
         auto_now=True)
     event_date = models.DateTimeField(
         "Event Date",
-        auto_now=True,
-        editable=True)
+        default=timezone.now().date())
     venue = models.CharField(
         max_length=300,
         default="UCT",
@@ -44,7 +43,6 @@ class Announcement(models.Model):
 
     def __unicode__(self):
         return u"%s %s" % (self.title, self.pub_date)
-
 
     is_valid_date = lambda s: s.event_date.date() >= s.pub_date
 
@@ -61,8 +59,9 @@ class Announcement(models.Model):
 
     def save(self):
         ''' Custom save function sets Date Published to current time on save. '''
-        self.slug = self.title.replace(" ","_")
+        self.slug = self.title.replace(" ", "_")
         super(Announcement, self).save()
+
 
 class Note(models.Model):
     '''
@@ -91,10 +90,9 @@ class Note(models.Model):
             if self.link.startswith("http://"):
                 validate(self.link)
             else:
-                validate ("http://%s" % (self.link))
+                validate("http://%s" % (self.link))
         except ValidationError:
             raise ValidationError(u"Your link seems to be broken!", code="invalid")
-
 
 
 class Event(models.Model):
@@ -106,15 +104,15 @@ class Event(models.Model):
         max_length=200)
     date_start = models.DateField(
         "Start Date",
-        auto_now=True,
-        editable=True)
-    date_end =  models.DateField(
+        default=timezone.now().date())
+    date_end = models.DateField(
         "End Date",
-        default = timezone.now())
+        default=timezone.now().date())
     venue = models.CharField(max_length=300, blank=True)
 
     def __unicode__(self):
         return self.title
+
 
 class SubEvent(models.Model):
     """
@@ -134,6 +132,7 @@ class SubEvent(models.Model):
     def __unicode__(self):
         return self.title
 
+
 class About(models.Model):
     """
         The About Model stores the umonya team personal data i.e. the
@@ -148,6 +147,7 @@ class About(models.Model):
     def __unicode__(self):
         return self.name
 
+
 class Page(models.Model):
     """
         The Page Model is used to populate content in each of the
@@ -158,6 +158,7 @@ class Page(models.Model):
 
     def __unicode__(self):
         return self.page
+
 
 class Registration(models.Model):
     """
@@ -175,6 +176,7 @@ class Registration(models.Model):
     def __unicode__(self):
         return self.name
 
+
 class Dynamic_Section(models.Model):
     """
         Sections that can be enabled or disabled by admin such
@@ -185,6 +187,7 @@ class Dynamic_Section(models.Model):
 
     def __unicode__(self):
         return self.section
+
 
 class Contact(models.Model):
     pass

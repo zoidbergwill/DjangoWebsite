@@ -8,7 +8,7 @@ class announcement_admin(admin.ModelAdmin):
     search_fields = ("title", "body", "venue")
     list_filter = ("pub_date", )
     ordering = ("pub_date", )
-    fields = ("title", "body", "event_date","venue")
+    fields = ("title", "body", "event_date", "venue")
 
 class event_admin(admin.ModelAdmin):
     list_display = ("title", "venue", "date_end", "date_start")
