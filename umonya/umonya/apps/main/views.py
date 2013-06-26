@@ -5,6 +5,7 @@ from django.template import RequestContext
 from models import About, Announcement, Dynamic_Section, Event, Note, Page, SubEvent
 from forms import RegistrationForm, ContactForm
 
+
 def home(request, page_number=1):
     """
         Renders the home.html view which is used as the index page i.e
@@ -43,8 +44,8 @@ def home(request, page_number=1):
         'total_pages': total_pages,
         'prev': prev,
         'next': next,
-        'path': path,
-        }, context_instance=RequestContext(request))
+        'path': path},
+        context_instance=RequestContext(request))
 
 
 def view_announcement(request, page_number, slug):
@@ -54,11 +55,10 @@ def view_announcement(request, page_number, slug):
         i.e. url path is www.umonya.org/announcements/<page_number><slug> .
         The announcement is found by the slug stored in the database
     """
-    announcement = get_object_or_404(Announcement,slug=slug)
+    announcement = get_object_or_404(Announcement, slug=slug)
     return render_to_response("view_announcement.html", {
         'announcement': announcement,
-        'page_number': page_number
-        })
+        'page_number': page_number})
 
 
 def custom_404(request, page_number, slug):
@@ -76,6 +76,7 @@ def about(request):
     return render_to_response("about.html", {'about': about,
                               "page_content": page_content},
                               context_instance=RequestContext(request))
+
 
 def resources(request):
     """
@@ -112,8 +113,10 @@ def resources(request):
             sub_event_title = i.title
             events[date_string].append([sub_event_time, sub_event_title])
 
-    return render_to_response("resources.html",
-        {"notes":notes, "events": events, "event_name": event_name},
+    return render_to_response("resources.html", {
+        "notes": notes,
+        "events": events,
+        "event_name": event_name},
         context_instance=RequestContext(request))
 
 
