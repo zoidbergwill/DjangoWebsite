@@ -58,6 +58,12 @@
 	background-color: black;
 }
 
+.navbar .active{
+	color: orange;
+	background-color: black;
+	font-weight: bold;
+}
+
 /****************************************************************************
 	STYLING THE BODY
 ****************************************************************************/

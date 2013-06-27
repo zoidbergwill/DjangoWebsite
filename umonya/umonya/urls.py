@@ -9,7 +9,7 @@ handler404 = 'umonya.apps.main.views.custom_404'
 urlpatterns = patterns('',
     # Examples:
     url(r"^",include("umonya.apps.main.urls")),
-    
+
     # url(r'^umonya/', include('umonya.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:

@@ -1,0 +1,51 @@
+{% load base_extras %}
+
+{% block navigation %}
+<body>
+  <div id="header">
+<div class="navbar">
+  <div class="container_12">
+  <div class="menu navbar-inner" >
+    <div class="span10" >
+      <ul class="nav">
+        <li class="">
+          <a class="{% navactive request 'home view_announcement' %}" href="/">Home</a>
+        </li>
+
+        <li class="">
+          <a class="{% navactive request 'blog' %}" href="/blog">Blog</a>
+        </li>
+
+        <li class="">
+          <a class="{% navactive request 'about' %}" href="/about">About Us</a>
+        </li>
+        {% if registration.enabled  %}
+            <li class="">
+              <a class="{% navactive request 'registration' %}" href="/registration">Registration Open</a>
+            </li>
+        {% else %}
+            <li class="">
+              <a class="{% navactive request 'registration' %}" href="/registration">Registration Closed</a>
+            </li>
+        {% endif %}
+        <li class="">
+          <a class="{% navactive request 'resources' %}" href="/resources">Resources</a>
+        </li>
+
+        <li class="">
+          <a class="{% navactive request 'course' %}" href="/course">Course Schedule</a>
+        </li>
+
+        <li class="">
+          <a class="{% navactive request 'contact' %}" href="/contact">Contact us</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+  </div>
+  </div>
+</body>
+
+
+{% endblock %}
