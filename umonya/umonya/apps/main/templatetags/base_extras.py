@@ -14,3 +14,5 @@ def navactive(request, views):
             return ""
     except urlresolvers.Resolver404:
         return ""
+    except AttributeError:
+        return ""
