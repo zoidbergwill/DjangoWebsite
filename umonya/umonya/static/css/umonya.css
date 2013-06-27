@@ -1,4 +1,4 @@
-/**************************************************************************** 
+/****************************************************************************
 	STYLING THE HEADER SECTION
 ****************************************************************************/
 #header {
@@ -6,24 +6,24 @@
 	padding:30px 0px 0px;;
 }
 
-.header-content { 
+.header-content {
 	margin-top: 10px;
 }
-		
-.logo { 
-	width:500px; 
-	top:25px; 
+
+.logo {
+	width:500px;
+	top:25px;
 	left:0;
 	margin-top: 20px;
-		
+
 }
 
-.logo, .logo a { 
-	color:#fff; 
-	line-height:30px; 
-	font-size:30px; 
-	font-family:'Rationale',Arial, Helvetica, sans-serif; 
-	text-align:left; 
+.logo, .logo a {
+	color:#fff;
+	line-height:30px;
+	font-size:30px;
+	font-family:'Rationale',Arial, Helvetica, sans-serif;
+	text-align:left;
 	text-decoration:none;
 }
 
@@ -52,19 +52,19 @@
 	color: orange;
 }
 
-.navbar .menu .nav > .active > a, 
+.navbar .menu .nav > .active > a,
 .navbar .menu .nav > .active > a:hover{
 	color: orange;
 	background-color: black;
 }
 
-/**************************************************************************** 
+/****************************************************************************
 	STYLING THE BODY
 ****************************************************************************/
 .body_content{
 	min-height: 400px;
  }
- 
+
  .content_padding{
 	padding: 10px;
  }
@@ -75,30 +75,30 @@
 	width: 320px;
 	margin: 0;
 	}
-	
+
 #sidebar .module{
-	padding:0 10px; 
+	padding:0 10px;
 	margin:0 0 20px 0;
 	}
-	
+
 #sidebar .module-title{
-	font-size:30px; 
-	line-height:35px; 
-	color:#B37600;  
-	padding:0 0 0 10px; 
+	font-size:30px;
+	line-height:35px;
+	color:#B37600;
+	padding:0 0 0 10px;
 	margin:0;
 	}
-	
+
 #sidebar h3 {
 	}
 #sidebar .module-body{margin:0; padding:0;}
 #sidebar .module-body p{
 	padding:0;
 	margin:0;}
-#sidebar .inner{ 
-	margin:0; 
+#sidebar .inner{
+	margin:0;
 	padding:5px 10px ; }
-	
+
 #about_page{
 
 }
@@ -124,7 +124,7 @@
           border-radius: 4px;
 }
 
-/**************************************************************************** 
+/****************************************************************************
 	STYLING THE FOOTER
 ****************************************************************************/
 #footer{
