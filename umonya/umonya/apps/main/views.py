@@ -35,8 +35,8 @@ def home(request, page_number=1):
             next = 'page%s' % (next)
             path = ''
     else:
-        prev = 'anouncements/page%s' % (prev)
-        next = 'anouncements/page%s' % (next)
+        prev = 'announcements/page%s' % (prev)
+        next = 'announcements/page%s' % (next)
         path = 'announcements/'
     return render_to_response(
         'home.html',
