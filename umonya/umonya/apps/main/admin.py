@@ -5,7 +5,7 @@ Registration, SubEvent
 # Ensuring that admin is aware of this class
 
 
-class announcement_admin(admin.ModelAdmin):
+class AnnouncementAdmin(admin.ModelAdmin):
     list_display = ('title', 'pub_date', 'event_date', 'venue')
     search_fields = ('title', 'body', 'venue')
     list_filter = ('pub_date', )
@@ -13,20 +13,20 @@ class announcement_admin(admin.ModelAdmin):
     fields = ('title', 'body', 'event_date', 'venue')
 
 
-class event_admin(admin.ModelAdmin):
+class EventAdmin(admin.ModelAdmin):
     list_display = ('title', 'venue', 'date_end', 'date_start')
     ordering = ('date_start', )
 
 
-class subevent_admin(admin.ModelAdmin):
+class SubEventAdmin(admin.ModelAdmin):
     list_display = ('title', 'parent_event', 'date', 'time')
     ordering = ('date', 'time')
 
 admin.site.register(About)
-admin.site.register(Announcement, announcement_admin)
+admin.site.register(Announcement, AnnouncementAdmin)
 admin.site.register(Dynamic_Section)
-admin.site.register(Event, event_admin)
+admin.site.register(Event, EventAdmin)
 admin.site.register(Note)
 admin.site.register(Page)
 admin.site.register(Registration)
-admin.site.register(SubEvent, subevent_admin)
+admin.site.register(SubEvent, SubEventAdmin)

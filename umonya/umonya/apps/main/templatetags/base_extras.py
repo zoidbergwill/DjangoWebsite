@@ -8,10 +8,7 @@ def navactive(request, views):
     views = ["umonya.apps.main.views." + view for view in views.split()]
     try:
         view = urlresolvers.resolve(request.path).url_name
-        if view in views:
-            return "active"
-        else:
-            return ""
+        return view in views and "active" or ""
     except urlresolvers.Resolver404:
         return ""
     except AttributeError:

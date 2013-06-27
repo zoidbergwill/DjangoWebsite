@@ -100,8 +100,10 @@ def resources(request):
     events = {}
     event_name = ''
 
-    if Event.objects.all().order_by('-date_start').count():
-        events_all = Event.objects.all().order_by('-date_start')[0]
+    events_query = Event.objects.all().order_by('-date_start')
+
+    if events_query.count():
+        events_all = events_query[0]
         sub_events = SubEvent.objects.filter(
             parent_event=events_all).order_by('time')
 
@@ -116,9 +118,10 @@ def resources(request):
             events[date_string].append([sub_event_time, sub_event_title])
 
     return render_to_response('resources.html', {
-        'notes': notes,
-        'events': events,
-        'event_name': event_name},
+            'notes': notes,
+            'events': events,
+            'event_name': event_name
+            },
         context_instance=RequestContext(request))
 
 

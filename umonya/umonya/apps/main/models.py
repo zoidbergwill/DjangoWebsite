@@ -4,6 +4,7 @@ from django.core.validators import URLValidator
 from django.db import models
 from django.utils import timezone
 from time import time
+from urllib2 import urlopen
 import logging
 
 
@@ -74,9 +75,9 @@ class Announcement(models.Model):
             Sets Date Published to current time on save.
             Creates slug from title
         '''
-        logging.debug('Successful save.')
         self.slug = self.title.replace(' ', '_')
         super(Announcement, self).save()
+        logging.debug('Successful save.')
 
 
 class Note(models.Model):
@@ -93,6 +94,10 @@ class Note(models.Model):
     pub_date = models.DateField(
         'Date Published',
         auto_now=True)
+    size = models.CharField(
+        max_length=300,
+        null=True,
+        editable=False)
 
     class Meta:
         ordering = ['-pub_date']
@@ -102,6 +107,7 @@ class Note(models.Model):
 
     def clean(self):
         validate = URLValidator()
+
         try:
             if self.link.startswith('http://'):
                 validate(self.link)
@@ -111,11 +117,25 @@ class Note(models.Model):
             raise ValidationError(u'Your link seems to be broken!',
                 code='invalid')
 
+        result = urlopen(self.link)
+        size = result.headers['content-length']
+
+        def sizeof_fmt(num):
+            for x in ['bytes','KB','MB','GB']:
+                if num < 1024.0:
+                    return "%3.1f%s" % (num, x)
+                num /= 1024.0
+            return "%3.1f%s" % (num, 'TB')
+
+        self.size = sizeof_fmt(size)
+
+
+
 
 class Event(models.Model):
     '''
         The Event Model stores upcoming events
-        default venue is uct
+        default venue is Abbotts College Century Gate
     '''
     title = models.CharField(
         max_length=200)
@@ -125,7 +145,10 @@ class Event(models.Model):
     date_end = models.DateField(
         'End Date',
         default=timezone.now().date())
-    venue = models.CharField(max_length=300, blank=True)
+    venue = models.CharField(
+        max_length=300,
+        default="Abbotts College Century Gate",
+        blank=True)
 
     def __unicode__(self):
         return self.title
