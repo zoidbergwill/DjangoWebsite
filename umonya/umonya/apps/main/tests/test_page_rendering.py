@@ -11,6 +11,11 @@ class TestPages(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "home.html")
 
+    def test_announcement_page(self):
+        response = self.client.get("/announcements/page1")
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "home.html")
+
     def test_blog(self):
         response = self.client.get("/blog/")
         self.assertEqual(response.status_code, 200)
