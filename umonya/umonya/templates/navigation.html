@@ -5,9 +5,14 @@
 
 
  <div class="navbar navbar-inverse">
-   <div class="navbar-inner">
-     <div class="container">
-       <div class="nav-collapse collapse" id="main-menu">
+  <div class="navbar-inner">
+    <div class="container">
+      <a style="margin: 5px;" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <div class="nav-collapse collapse" id="main-menu">
         <ul class="nav" id="main-menu-left">
           <li class="">
             <a class="{% navactive request 'home view_announcement' %}" href="/">Home</a>
@@ -43,9 +48,9 @@
             <a class="{% navactive request 'contact' %}" href="/contact">Contact us</a>
           </li>
         </ul>
-       </div>
-     </div>
-   </div>
+      </div>
+    </div>
+  </div>
  </div>
 
 {% endblock %}
