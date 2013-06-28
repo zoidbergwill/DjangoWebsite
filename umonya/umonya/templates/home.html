@@ -19,7 +19,9 @@
                 <small>Created on {{ announcement.pub_date }}</small>
             </p>
             <p>
-                {{ announcement.body|safe}}
+                {% autoescape on %}
+                  {{ announcement.body|safe }}
+                {% endautoescape %}
             </p>
         </li>
       {% endfor %}
@@ -30,7 +32,8 @@
   {% endif %}
 </div>
 
-<ul class="pager">
+<div class="container span8">
+  <ul class="pager">
     <li
       {% if page_number == total_pages %}
         class="previous disabled" >
@@ -51,6 +54,7 @@
       {% endif %}
         Newer &rarr;</a>
     </li>
-</ul>
+  </ul>
+</div>
 
 {% endblock %}

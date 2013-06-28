@@ -11,6 +11,7 @@ class AnnouncementAdmin(admin.ModelAdmin):
     list_filter = ('pub_date', )
     ordering = ('pub_date', )
     fields = ('title', 'body', 'event_date', 'venue')
+    change_form_template = 'main/admin/change_form.html'
 
 
 class EventAdmin(admin.ModelAdmin):
