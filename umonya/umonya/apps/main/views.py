@@ -2,8 +2,8 @@ from django.shortcuts import render_to_response, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.core.context_processors import csrf
 from django.template import RequestContext
-from models import About, Announcement, Dynamic_Section, Event, Note, Page, \
-SubEvent
+from models import (About, Announcement, Dynamic_Section, Event, Note, Page,
+                    SubEvent)
 from forms import RegistrationForm, ContactForm
 
 

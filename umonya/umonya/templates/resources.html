@@ -40,7 +40,9 @@
     {% for note in notes %}
       <li>
         <p>
-          <a href="{{ note.link }}">{{ note.title|safe}}</a>
+          <a href="{{ note.link }}">
+            {{ note.title|safe}}
+              <span class="muted">{{ note.size }}</span></a>
         </p>
       </li>
     {% endfor %}
