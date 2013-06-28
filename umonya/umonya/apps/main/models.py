@@ -30,7 +30,8 @@ class Announcement(models.Model):
         blank=False,)
     pub_date = models.DateField(
         'Date Published',
-        auto_now=True)
+        editable=False,
+        auto_now_add=True)
     event_date = models.DateTimeField(
         'Event Date',
         default=timezone.now(),

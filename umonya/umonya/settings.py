@@ -131,6 +131,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 
 INSTALLED_APPS = (
     'umonya.apps.main',
+    'django_wysiwyg',
     #~ 'umonya.apps.blog',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -142,6 +143,8 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
+
+DJANGO_WYSIWYG_FLAVOR = 'yui_advanced'
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
