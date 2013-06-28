@@ -5,32 +5,36 @@
 
 {% block content %}
 
-<div class="span8">
+<h1>Announcements</h1>
+<hr />
 
-  <h1>Announcements</h1>
-  <hr />
-  {% if announcements %}
-    <ul>
-      {% for announcement in announcements %}
-        <li>
-          <a href="{{ path }}{{ page_number }}{{ announcement.slug }}">
-                <h3>{{ announcement.title }}</h3></a>
-            <p class="muted text-left">
-                <small>Created on {{ announcement.pub_date }}</small>
-            </p>
-            <p>
-                {% autoescape on %}
-                  {{ announcement.body|safe }}
-                {% endautoescape %}
-            </p>
-        </li>
-      {% endfor %}
-    </ul>
+{% if announcements %}
 
-  {% else %}
-    <p>There are no posts.</p>
-  {% endif %}
-</div>
+  <ul class="unstyled">
+
+    {% for announcement in announcements %}
+
+      <li>
+        <a href="{{ path }}{{ page_number }}{{ announcement.slug }}">
+              <h2 style="margin: 13px 0 0;">{{ announcement.title }}</h2></a>
+          <p style="margin: 0 0 0;" class="muted text-left">
+              <small>Created on {{ announcement.pub_date }}</small>
+          </p>
+
+          {{ announcement.body|safe }}
+
+      </li>
+        <hr />
+
+    {% endfor %}
+
+  </ul>
+
+{% else %}
+
+  <p>There are no posts.</p>
+
+{% endif %}
 
 <div class="container span8">
   <ul class="pager">

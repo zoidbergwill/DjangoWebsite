@@ -2,56 +2,53 @@
 
 {% block content %}
 
-<div class="span8">
-  <h1>Resources</h1>
+<h1>Resources</h1>
+<hr />
+
+{% if events %}
+
+  <h2>Upcoming Events</h2>
   <hr />
 
-  {% if events %}
-
-    <h2>Upcoming Events</h2>
+  <p>
+    <h3>{{ event_name }}</h3>
     <hr />
+  </p>
 
-    <p>
-      <h3>{{ event_name }}</h3>
-      <hr />
-    </p>
+  <ul>
+  {% for key, value in events.items %}
+    <li>
+      <h3>{{ key }}</h3>
 
-    <ul>
-    {% for key, value in events.items %}
-      <li>
-        <h3>{{ key }}</h3>
-
-        {% for sub_event in value %}
-          <p>
-            {{ sub_event.0 }} {{ sub_event.1 }}
-          </p>
-        {% endfor %}
-      </li>
-    {% endfor %}
-    </ul>
-  {% else %}
-    <p>There are no scheduled upcoming events.</p>
-  {% endif %}
-
-  <h2>Additional Resources</h2>
-  <hr />
-  {% if notes %}
-    <ul>
-    {% for note in notes %}
-      <li>
+      {% for sub_event in value %}
         <p>
-          <a href="{{ note.link }}">
-            {{ note.title|safe}}
-              <span class="muted">{{ note.size }}</span></a>
+          {{ sub_event.0 }} {{ sub_event.1 }}
         </p>
-      </li>
-    {% endfor %}
-    </ul>
+      {% endfor %}
+    </li>
+  {% endfor %}
+  </ul>
+{% else %}
+  <p>There are no scheduled upcoming events.</p>
+{% endif %}
 
-  {% else %}
-    <p>There are no additional resources available.</p>
-  {% endif %}
+<h2>Additional Resources</h2>
+<hr />
+{% if notes %}
+  <ul>
+  {% for note in notes %}
+    <li>
+      <p>
+        <a href="{{ note.link }}">
+          {{ note.title|safe}}
+            <span class="muted">{{ note.size }}</span></a>
+      </p>
+    </li>
+  {% endfor %}
+  </ul>
 
-</div>
+{% else %}
+  <p>There are no additional resources available.</p>
+{% endif %}
 
 {% endblock %}
