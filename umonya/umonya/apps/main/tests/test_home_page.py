@@ -63,5 +63,5 @@ class TestPageLoading(TestCase):
         response_announcements_page1 = self.client.get("/announcements/page1")
         response_home = self.client.get("/")
         self.assertEqual(
-            response_home.content,
-            response_announcements_page1.content)
+            response_home.context["announcements"],
+            response_announcements_page1.context["announcements"])

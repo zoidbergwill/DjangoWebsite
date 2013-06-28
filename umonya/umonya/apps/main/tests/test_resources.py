@@ -23,14 +23,6 @@ class TestNote(TestCase):
             'There are no additional resources available.')
         self.assertContains(response, 'Note Title')
 
-    def test_home_page1_equal(self):
-        # Tests page1 of announcements and Home return same result.
-        response_announcements_page1 = self.client.get('/announcements/page1')
-        response_home = self.client.get('/')
-        self.assertEqual(
-            response_home.content,
-            response_announcements_page1.content)
-
     def test_no_events(self):
         request = self.client.get('/resources/').request
         events = {}

@@ -54,6 +54,17 @@ class Announcement(models.Model):
 
     def clean(self):
 
+        # replaces <br>'s and \r\n's with <p>
+        if not self.body.startswith("<p>"):
+            self.body = "<p>" + self.body
+
+        if not self.body.endswith("</p>"):
+            self.body = self.body + "</p>"
+
+        self.body = self.body.replace("\r\n","</p><p>")
+        self.body = self.body.replace("<br>","</p><p>")
+        self.body = self.body.replace("</p><p></p><p>","</p><p>")
+
         if self.event_date:
             if not self.is_valid_date():
                 logging.debug('Someone tried to set an invalid date.')

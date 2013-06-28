@@ -55,9 +55,11 @@ class TestPageContent(TestCase):
         Page.objects.create(page="about",
                             content="<h1>Umonya heading</h1>")
 
+        page_all = Page.objects.all()
+
         response = self.client.get("/about/")
-        content = response.context['page_content'][0]
-        self.assertEqual([a.pk for a in response.context['page_content']], [1])
+        content = response.context['page_content'][page_all.count() - 1]
+        self.assertEqual([a.pk for a in response.context['page_content']], [i.pk for i in page_all])
         self.assertEqual(content.page, "about")
         self.assertEqual(content.content, "<h1>Umonya heading</h1>")
 
@@ -68,9 +70,13 @@ class TestPageContent(TestCase):
                              pub_date=datetime.datetime.utcnow().
                              replace(tzinfo=utc))
 
+        about_all = About.objects.all()
+
         response = self.client.get("/about/")
-        content = response.context['about'][0]
-        self.assertEqual([a.pk for a in response.context['about']], [1])
+
+        # index never negative because object created above
+        content = response.context['about'][about_all.count() - 1]
+        self.assertEqual([a.pk for a in response.context['about']], [i.pk for i in about_all])
         self.assertEqual(content.name, "Umonya Name")
         self.assertEqual(content.bios, "Umonya Bios")
         self.assertEqual(content.bios_photo, "path/2/Um/Photo.png")

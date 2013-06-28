@@ -140,7 +140,10 @@ def registration(request):
         f = RegistrationForm()
 
     try:
-        section = Dynamic_Section.objects.get(section='registration')
+        # queryset only evaluated in second line, and only one record stored,
+        # so this is more efficient, as count is done at db level.
+        dyn_sections = Dynamic_Section.objects.filter(section='registration')
+        section = dyn_sections[dyn_sections.count() - 1]
     except Dynamic_Section.DoesNotExist:
         section = False
 
