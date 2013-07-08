@@ -6,11 +6,17 @@ admin.autodiscover()
 # Sets custom 404 page
 handler404 = 'apps.main.views.custom_404'
 
-urlpatterns = patterns('',
-    # Examples:
-    url(r"^",include("apps.main.urls")),
-
-    # url(r'^umonya/', include('umonya.foo.urls')),
+urlpatterns = patterns(
+    '',
+    url(r'^$', 'apps.announcements.views.home',  name='home'),
+    url(r'^about/$', 'apps.about.views.about', name='about'),
+    url(r'^resources/$', 'apps.resources.views.resources', name='resources'),
+    url(r'^registration/$', 'apps.registration.views.registration', name='registration'),
+    url(r'^contact/$', 'apps.contact.views.contact', name='contact'),
+    url(r'^course/$', 'apps.course.views.course', name='course'),
+    url(r'^blog/$', 'apps.blog.views.blog', name='blog'),
+    url(r'^announcements/page(?P<page_number>\d+)$', 'apps.announcements.views.home', name='announcements_page'),
+    url(r'^announcements/(?P<page_number>\d+)(?P<slug>[^\.]+)$', 'apps.announcements.views.view_announcement', name='view_announcement'),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

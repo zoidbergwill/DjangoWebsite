@@ -1,21 +1,20 @@
-import datetime, calendar
-from django.utils import timezone
 from django.test import TestCase
-from umonya.apps.main.models import Event, SubEvent, Note
+from apps.resources.models import Note
 from django.shortcuts import render
+
 
 class TestNote(TestCase):
     def test_no_notes(self):
-        request = self.client.get('/resources/')
-        response = render(request.request, "resources.html", {'notes': []})
+        request = self.client.get('/resources/').request
+        response = render(request, "resources.html", {'notes': []})
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'resources.html')
         self.assertContains(response, 'There are no additional resources available.')
 
     def test_notes(self):
         notes = [Note(title='Note Title', link='')]
-        request = self.client.get('/resources/')
-        response = render(request.request, "resources.html", {'notes': notes})
+        request = self.client.get('/resources/').request
+        response = render(request, "resources.html", {'notes': notes})
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'resources.html')
         self.assertNotContains(
@@ -34,12 +33,8 @@ class TestNote(TestCase):
     def test_events(self):
         request = self.client.get('/resources/').request
         events = {
-        "25 December":[[
-            "09:00",
-            "Christmas Presents"]],
-        "26 December":[[
-            "08:00",
-            "Boxing Day Breakfast"]]}
+            "25 December": [["09:00", "Christmas Presents"]],
+            "26 December": [["08:00", "Boxing Day Breakfast"]]}
         response = render(request, "resources.html", {'events': events})
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'resources.html')

@@ -1,6 +1,6 @@
 from django.contrib import admin
-from models import Dynamic_Section
+from models import (About)
 
 # Ensuring that admin is aware of this class
 
-admin.site.register(Dynamic_Section)
+admin.site.register(About)

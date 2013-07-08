@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div id = "about_page" class = "grid_8">
+	{% for content in page_content %}
+		{{ content.content | safe }}
+	{% endfor %}
+		
+			
+	<div class = "">
+		<hr />
+		<h1> Who we are </h1>
+		<hr />
+			{% for a in about %}
+				<div class = "grid_3" style = "margin-bottom: 30px;">
+					<h3> {{ a.name }} </h3>
+					<hr />
+					
+					<div class = "grid_3">
+						<img src ="/static/{{ a.bios_photo }}" width = "200" />
+					</div>
+					<div class = "clearfix"></div>
+					<div class = "content_padding">
+						{{ a.bios }}
+					</div>
+						
+				</div>
+				
+			{% endfor %}
+	</div>
+</div>
+{% endblock %}

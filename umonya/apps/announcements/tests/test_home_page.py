@@ -1,8 +1,9 @@
-import datetime, calendar
-from django.core.urlresolvers import reverse
+import datetime
+import calendar
 from django.utils import timezone
 from django.test import TestCase
-from apps.main.models import Announcement
+from apps.announcements.models import Announcement
+
 
 class TestClean(TestCase):
     """ Tests Announcement.is_valid_date by testing dates with known
@@ -33,6 +34,7 @@ class TestClean(TestCase):
         event_date = datetime.datetime(year, month, day, 12, 0, 0)
         test = Announcement(pub_date=pub_date, event_date=event_date)
         self.assertFalse(test.is_valid_date())
+
 
 class TestPageLoading(TestCase):
     """ Tests pages loading correctly in announcements pages """

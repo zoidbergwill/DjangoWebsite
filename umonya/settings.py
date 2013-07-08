@@ -125,12 +125,19 @@ TEMPLATE_DIRS = (
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',
     'django.contrib.messages.context_processors.messages',
-    'apps.main.context_processors.dynamic_menu',
+    'apps.registration.context_processors.dynamic_menu',
     'django.core.context_processors.request',
 )
 
 INSTALLED_APPS = (
+    'apps.about',
+    'apps.announcements',
+    'apps.blog',
+    'apps.contact',
+    'apps.course',
     'apps.main',
+    'apps.registration',
+    'apps.resources',
     'django_wysiwyg',
     #~ 'umonya.apps.blog',
     'django.contrib.auth',

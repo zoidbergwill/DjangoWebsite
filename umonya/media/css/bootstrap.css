@@ -182,8 +182,13 @@ textarea {
     background: transparent !important;
     box-shadow: none !important;
   }
-  a,
+
+  a {
+    text-decoration: underline;
+  }
+
   a:visited {
+    color: rgb(48, 122, 255);
     text-decoration: underline;
   }
   a[href]:after {
