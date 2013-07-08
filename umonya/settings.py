@@ -5,7 +5,7 @@ import os
 
 UMONYA_BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 UMONYA_TEMPLATE_DIR = os.path.join(UMONYA_BASE_DIR, 'templates')
-UMONYA_STATIC_DIR = os.path.join(UMONYA_BASE_DIR, 'static')
+UMONYA_STATIC_DIR = os.path.join(UMONYA_BASE_DIR, 'media')
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -110,10 +110,10 @@ MIDDLEWARE_CLASSES = (
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'umonya.urls'
+ROOT_URLCONF = 'urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
-WSGI_APPLICATION = 'umonya.wsgi.application'
+WSGI_APPLICATION = 'wsgi.application'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
@@ -125,12 +125,12 @@ TEMPLATE_DIRS = (
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',
     'django.contrib.messages.context_processors.messages',
-    'umonya.apps.main.context_processors.dynamic_menu',
+    'apps.main.context_processors.dynamic_menu',
     'django.core.context_processors.request',
 )
 
 INSTALLED_APPS = (
-    'umonya.apps.main',
+    'apps.main',
     'django_wysiwyg',
     #~ 'umonya.apps.blog',
     'django.contrib.auth',
