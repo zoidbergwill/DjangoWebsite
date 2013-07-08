@@ -5,12 +5,12 @@
   {% if section.enabled %}
     <h1> Registration </h1>
     <hr />
-    <div class="row">
-    <div class="span8">
+
+    <div class="container">
       <form action="" method = "post" id = "registrationForm">{% csrf_token %}
         <fieldset>
         {% for field in form %}
-          <div class="span8">
+          <div class="span4">
             {{ field.label_tag }}
             {{ field }}
             {% if field.errors %}
@@ -21,11 +21,12 @@
           </div>
         {% endfor %}
 
-        <div class = "span6">
+        <div class = "span8">
           <input type="submit" value="Register" />
         </div>
         </fieldset>
       </form>
+    </div>
 
   <script type="text/javascript">
     $().ready(function(){
@@ -37,9 +38,6 @@
       });
   });
   </script>
-
-    </div>
-  </div>
 
   {% elif success %}
     <h1>

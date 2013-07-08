@@ -1,5 +1,5 @@
 from django.test import TestCase
-from umonya.apps.main.models import About, Page, Dynamic_Section
+from apps.main.models import About, Page, Dynamic_Section
 import datetime
 from django.utils.timezone import utc
 from django.core.urlresolvers import reverse
@@ -100,29 +100,29 @@ class TestPageContent(TestCase):
 
 class TestUrls(TestCase):
     def test_home_url(self):
-        url = reverse("umonya.apps.main.views.home")
+        url = reverse("apps.main.views.home")
         self.assertEqual(url, "/")
 
     def test_about_url(self):
-        url = reverse("umonya.apps.main.views.about")
+        url = reverse("apps.main.views.about")
         self.assertEqual(url, "/about/")
 
     def test_resources_url(self):
-        url = reverse("umonya.apps.main.views.resources")
+        url = reverse("apps.main.views.resources")
         self.assertEqual(url, "/resources/")
 
     def test_registration_url(self):
-        url = reverse("umonya.apps.main.views.registration")
+        url = reverse("apps.main.views.registration")
         self.assertEqual(url, "/registration/")
 
     def test_contact_url(self):
-        url = reverse("umonya.apps.main.views.contact")
+        url = reverse("apps.main.views.contact")
         self.assertEqual(url, "/contact/")
 
     def test_course_url(self):
-        url = reverse("umonya.apps.main.views.course")
+        url = reverse("apps.main.views.course")
         self.assertEqual(url, "/course/")
 
     def test_blog_url(self):
-        url = reverse("umonya.apps.main.views.blog")
+        url = reverse("apps.main.views.blog")
         self.assertEqual(url, "/blog/")

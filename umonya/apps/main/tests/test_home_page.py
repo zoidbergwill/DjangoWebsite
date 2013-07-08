@@ -2,7 +2,7 @@ import datetime, calendar
 from django.core.urlresolvers import reverse
 from django.utils import timezone
 from django.test import TestCase
-from umonya.apps.main.models import Announcement
+from apps.main.models import Announcement
 
 class TestClean(TestCase):
     """ Tests Announcement.is_valid_date by testing dates with known
