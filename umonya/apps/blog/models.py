@@ -9,16 +9,6 @@ import logging
 from django.contrib.auth.models import User
 
 
-class BlogCategory(models.Model):
-    '''
-        Model for blog posts
-        Stores title, body, author
-        Date Published set on creation.
-    '''
-    name = models.CharField(
-        max_length=200)
-
-
 class BlogPost(models.Model):
     '''
         Model for blog posts
@@ -27,7 +17,6 @@ class BlogPost(models.Model):
     '''
     title = models.CharField(
         max_length=200,
-        unique=True,
         blank=False)
     body = models.TextField(
         blank=False,)
@@ -39,7 +28,6 @@ class BlogPost(models.Model):
         User,
         null=True,
         blank=True)
-    category = models.ForeignKey(BlogCategory)
     slug = models.SlugField(editable=False)
 
     class Meta:
@@ -82,3 +70,14 @@ class BlogPost(models.Model):
         self.slug = self.title.replace(' ', '_')
         super(BlogPost, self).save()
         logging.debug('Successful save.')
+
+
+class BlogCategory(models.Model):
+    '''
+        Model for blog posts
+        Stores title, body, author
+        Date Published set on creation.
+    '''
+    name = models.CharField(
+        max_length=200)
+    post = models.ForeignKey(BlogPost, related_name="category")

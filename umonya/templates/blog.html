@@ -11,7 +11,7 @@
       <ul class="unstyled">
       {% for post in blog_posts %}
         <li>
-          <a href="{{ path }}{{ page_number }}{{ post.slug }}">
+          <a href="{{ path }}{{ page_number }}/{{ post.slug }}">
             <h2 style="margin: 13px 0 0;">{{ post.title }}</h2></a>
 
           <p style="margin: 0 0 0;" class="muted text-left">
@@ -41,7 +41,7 @@
     {% if blog_categories %}
         <ul>
         {% for category in blog_categories %}
-            <li><a href="{{ category.get_absolute_url }}">{{ category.title }}</a></li>
+            <li><a href="/blog/category/{{ category.name }}">{{ category.name }}</a></li>
         {% endfor %}
         </ul>
     {% else %}
