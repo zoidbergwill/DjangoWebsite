@@ -63,12 +63,11 @@
 
 	{{ block.super }}
 
-	{# Replace XXXXXXXX with field name: #}
 	{% wysiwyg_editor "id_body" %}
 
 	{% comment %}
 		{# ckeditor custom config example #}
-		{% wysiwyg_editor "id_XXXXXXXX" "id_XXXXXXXX_editor" "{ toolbar: 'compact_toolbar' }" %}
+		{% wysiwyg_editor "id_body" "id_body_editor" "{ toolbar: 'compact_toolbar' }" %}
 	{% endcomment %}
 
 	{# ... add more here... #}

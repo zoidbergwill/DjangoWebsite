@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Sponsors</h1>
+<hr />
+
+{% if sponsors %}
+	{% for a in sponsors %}
+
+		<div class = "span4" style = "margin-bottom: 30px;">
+			<h3> {{ a.name }} </h3>
+		</div>
+			<hr />
+
+			<div class = "span4">
+				<img src ="/static/sponsors/{{ a.photo }}" height = "300" />
+			</div>
+		</div>
+
+	{% endfor %}
+
+{% else %}
+
+  <p>There are no sponsors yet.</p>
+
+{% endif %}
+{% endblock %}

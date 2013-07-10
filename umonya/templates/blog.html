@@ -4,26 +4,43 @@
 
 {% block content %}
 
-    <h1>Blog</h1>
-    <hr />
-    {% if posts %}
-        <ul>
-        {% for post in posts %}
-            <li><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></li>
-        {% endfor %}
-        </ul>
-    {% else %}
-        <p>There are no posts.</p>
-    {% endif %}
+  <h1>Blog</h1>
+  <hr />
+
+  {% if blog_posts %}
+      <ul class="unstyled">
+      {% for post in blog_posts %}
+        <li>
+          <a href="{{ path }}{{ page_number }}{{ post.slug }}">
+            <h2 style="margin: 13px 0 0;">{{ post.title }}</h2></a>
+
+          <p style="margin: 0 0 0;" class="muted text-left">
+            <small>Created on {{ post.pub_date }}</small>
+          </p>
+
+          {{ announcement.body|safe }}
+
+        </li>
+
+        <hr />
+
+      {% endfor %}
+      </ul>
+
+  {% else %}
+
+      <p>There are no posts.</p>
+
+  {% endif %}
 
 {%endblock%}
 
 {%block categories%}
 
     <h3>Categories</h3>
-    {% if categories %}
+    {% if blog_categories %}
         <ul>
-        {% for category in categories %}
+        {% for category in blog_categories %}
             <li><a href="{{ category.get_absolute_url }}">{{ category.title }}</a></li>
         {% endfor %}
         </ul>
