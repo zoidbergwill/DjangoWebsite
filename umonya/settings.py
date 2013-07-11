@@ -139,6 +139,7 @@ INSTALLED_APPS = (
     'apps.main',
     'apps.registration',
     'apps.resources',
+    'apps.sponsors',
     'debug_toolbar',
     'django_wysiwyg',
     'django.contrib.auth',
