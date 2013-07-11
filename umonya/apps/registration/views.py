@@ -9,14 +9,12 @@ from apps.main.models import Dynamic_Section
 def registration(request):
     if request.method == 'POST':
         f = RegistrationForm(request.POST)
-
         if f.is_valid():
             send_email_f(f)
             success = {'success': 'success'}
             return render_to_response(
                 'registration.html', success,
                 context_instance=RequestContext(request))
-
     else:
         f = RegistrationForm()
 

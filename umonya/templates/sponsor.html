@@ -6,23 +6,36 @@
 <hr />
 
 {% if sponsors %}
-	{% for a in sponsors %}
+  {% for a in sponsors %}
 
-		<div class = "span4" style = "margin-bottom: 30px;">
-			<h3> {{ a.name }} </h3>
-		</div>
-			<hr />
+    <div class = "span4" style = "margin-bottom: 30px;">
+        <h3> {{ a.name }} </h3>
+    </div>
+        <hr />
 
-			<div class = "span4">
-				<img src ="/static/sponsors/{{ a.photo }}" height = "300" />
-			</div>
-		</div>
+        <div class = "span4">
+            <img src ="/static/sponsors/{{ a.photo }}" height = "300" />
+        </div>
 
-	{% endfor %}
+  {% endfor %}
 
 {% else %}
 
   <p>There are no sponsors yet.</p>
 
 {% endif %}
+
+<hr />
+
+<div class="span8" style="margin-left: 0;">
+  <div class="hero-unit">
+    <h1>Sponsor a child</h1>
+      <p>
+        Are you interested in sponsoring a child?
+      </p>
+
+      <p><a href="{% url 'sponsor_a_child' %}" class="btn btn-primary btn-large">Sponsor &raquo;</a></p>
+  </div>
+</div>
+
 {% endblock %}

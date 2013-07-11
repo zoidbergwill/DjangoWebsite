@@ -15,6 +15,7 @@ urlpatterns = patterns(
     url(r'^contact/$', 'apps.contact.views.contact', name='contact'),
     url(r'^course/$', 'apps.course.views.course', name='course'),
     url(r'^sponsors/$', 'apps.sponsors.views.sponsors', name='sponsors'),
+    url(r'^sponsors/sponsor_a_child/$', 'apps.sponsors.views.sponsor_a_child', name='sponsor_a_child'),
     url(r'^blog/$', 'apps.blog.views.blog', name='blog'),
     url(r'^blog/page(?P<page_number>\d+)$', 'apps.blog.views.blog', name='blog_page'),
     url(r'^blog/category/(?P<slug>[^\.]+)/page(?P<page_number>\d+)/$', 'apps.blog.views.blog_category', name='blog_category'),
