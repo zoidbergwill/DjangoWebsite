@@ -49,3 +49,9 @@ def resources(request):
             'event_name': event_name
         },
         context_instance=RequestContext(request))
+
+
+def course(request):
+    return render_to_response(
+        'course.html',
+        context_instance=RequestContext(request))

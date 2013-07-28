@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 
-{% block title %}Umonya Blog &#124; Hello World{% endblock %}
+{% block title %}
+  Umonya Blog &#124; Hello World
+{% endblock %}
 
 {% block content %}
 
@@ -8,28 +10,30 @@
   <hr />
 
   {% if blog_posts %}
-      <ul class="unstyled">
+
+    <ul class="unstyled">
+
       {% for post in blog_posts %}
+
         <li>
           <a href="{{ path }}{{ page_number }}/{{ post.slug }}">
-            <h2 style="margin: 13px 0 0;">{{ post.title }}</h2></a>
-
+            <h2 style="margin: 13px 0 0;">{{ post.title }}</h2>
+          </a>
           <p style="margin: 0 0 0;" class="muted text-left">
             <small>Created on {{ post.pub_date }}</small>
           </p>
-
           {{ announcement.body|safe }}
-
         </li>
 
         <hr />
 
       {% endfor %}
-      </ul>
+
+    </ul>
 
   {% else %}
 
-      <p>There are no posts.</p>
+    <p>There are no posts.</p>
 
   {% endif %}
 
@@ -37,16 +41,24 @@
 
 {%block categories%}
 
-    <h3>Categories</h3>
-    {% if blog_categories %}
-        <ul>
-        {% for category in blog_categories %}
-            <li><a href="/blog/category/{{ category.name }}">{{ category.name }}</a></li>
-        {% endfor %}
-        </ul>
-    {% else %}
-        <p>There are no categories.</p>
-    {% endif %}
+  <h3>Categories</h3>
 
+  {% if blog_categories %}
+
+    <ul>
+
+      {% for category in blog_categories %}
+
+          <li><a href="/blog/category/{{ category.name }}">{{ category.name }}</a></li>
+
+      {% endfor %}
+
+    </ul>
+
+  {% else %}
+
+    <p>There are no categories.</p>
+
+  {% endif %}
 
 {%endblock%}

@@ -1,4 +1,4 @@
-from apps.main.models import Dynamic_Section
+from apps.utils.models import Dynamic_Section
 
 
 def dynamic_menu(request):

@@ -44,7 +44,7 @@ class TestPageLoading(TestCase):
         total_pages += num_posts % 5 and 1 or 0
         empty_page_num = total_pages + 1
 
-        response = self.client.get("/announcements/page" + str(empty_page_num))
+        response = self.client.get("/announcements/page" + str(empty_page_num) + "/")
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'home.html')
         self.assertContains(response, 'There are no posts.')
@@ -55,14 +55,14 @@ class TestPageLoading(TestCase):
         total_pages += num_posts % 5 and 1 or 0
 
         if total_pages:
-            response = self.client.get("/announcements/page" + str(total_pages))
+            response = self.client.get("/announcements/page" + str(total_pages) + "/")
             self.assertEqual(response.status_code, 200)
             self.assertTemplateUsed(response, 'home.html')
             self.assertNotContains(response, 'There are no posts.')
 
     def test_home_page1_equal(self):
         # Tests page1 of announcements and Home return same result.
-        response_announcements_page1 = self.client.get("/announcements/page1")
+        response_announcements_page1 = self.client.get("/announcements/page1/")
         response_home = self.client.get("/")
         self.assertEqual(
             response_home.context["announcements"],

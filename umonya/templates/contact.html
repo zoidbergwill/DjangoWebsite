@@ -3,7 +3,7 @@
 {% block content %}
   {% if success %}
     <h1>
-      Thank You we have recieved your response
+      Thank you, we have recieved your response.
     </h1>
     <hr />
 
@@ -15,17 +15,25 @@
 
     <div class="container">
       <form action="" method="POST" id="contactForm">{% csrf_token %}
+
         {% for field in form %}
+
           <div class="span4">
             {{ field.label_tag }}
             {{ field }}
+
             {% if field.errors %}
+
               <div class="alert alert-error">
                 {{ field.errors }}
               </div>
+
             {% endif %}
+
           </div>
+
         {% endfor %}
+
         <div class="span8">
           <input type = "submit" value="Send" />
         </div>

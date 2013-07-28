@@ -28,90 +28,92 @@
 
 <body>
 
-<!-- Masthead
-================================================== -->
-
-<div id="header">
-  <div class="container-fluid">
-    <header class="jumbotron subhead" id="overview">
-      <div class="row-fluid">
-        <div class="logo" style="margin: 20px ; ">
-          <img src="{% static "img/css/logo.png" %}" border="0" />
-        </div>
-        {% block header %} {% endblock %}
-        {% block slideshow %} {% endblock %}
-      </div>
-    </header>
-  </div>
-  <!-- Navbar
+  <!-- Masthead
   ================================================== -->
-  <div class="container-fluid">
 
-    {% include "navigation.html" %}
-
-  </div>
-</div>
-
-<!-- endhead================================================== -->
-
-<div class="container-fluid">
-  <div class="span8" style="margin: 0 10px 0 0;">
-
-    {%block content%}
-
-    {%endblock%}
-
-  </div>
-  <div class="span4 .hidden-phone" style="margin: 15px 0 0 10px; ">
+  <div id="header">
     <div class="container">
-      <!--faceboook widget -->
-      <div>
-        <div id="fb-root" class></div>
-        <script>(function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1";
-        fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));</script>
-
-        <div class="fb-like" data-href="http://facebook.com/projectumonya" data-send="false" data-width="300" data-show-faces="false" data-font="lucida grande"></div>
-
-      </div>
-
-      <!--Google+ Widget widget -->
-      <div>
-        <!-- Place this tag in your head or just before your close body tag. -->
-        <script type="text/javascript" src="https://apis.google.com/js/plusone.js">
-        {lang: 'en-GB'}
-        </script>
-
-        <!-- Place this tag where you want the badge to render. -->
-        <div class="g-plus" data-height="69" data-width="300" data-href="https://plus.google.com/108023234245317429003" data-rel="publisher" data-theme="light">
+      <header class="jumbotron subhead" id="overview">
+        <div class="row-fluid">
+          <div class="logo" style="margin: 20px ; ">
+            <img src="{% static "img/css/logo.png" %}" border="0" />
+          </div>
+          {% block header %} {% endblock %}
+          {% block slideshow %} {% endblock %}
         </div>
+      </header>
+    </div>
+    <!-- Navbar
+    ================================================== -->
+    <div class="container">
 
-      </div>
+      {% include "navigation.html" %}
 
-      <row>
+    </div>
+  </div>
 
-      {%block categories %}
+  <!-- endhead================================================== -->
+
+  <div class="container">
+    <div class="span8" style="margin: 0 10px 0 0;">
+
+      {%block content%}
 
       {%endblock%}
 
-      </row>
+    </div>
+    <div class="span4 .hidden-phone" style="margin: 15px 0 0 10px; ">
+      <div class="container">
+        <!--faceboook widget -->
+        <div>
+          <div id="fb-root" class></div>
+          <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1";
+          fjs.parentNode.insertBefore(js, fjs);
+          }(document, 'script', 'facebook-jssdk'));</script>
+
+          <div class="fb-like" data-href="http://facebook.com/projectumonya" data-send="false" data-width="300" data-show-faces="false" data-font="lucida grande"></div>
+
+        </div>
+
+        <!--Google+ Widget widget -->
+        <div>
+          <!-- Place this tag in your head or just before your close body tag. -->
+          <script type="text/javascript" src="https://apis.google.com/js/plusone.js">
+          {lang: 'en-GB'}
+          </script>
+
+          <!-- Place this tag where you want the badge to render. -->
+          <div class="g-plus" data-height="69" data-width="300" data-href="https://plus.google.com/108023234245317429003" data-rel="publisher" data-theme="light">
+          </div>
+
+        </div>
+
+        <row>
+
+        {%block categories %}
+
+        {%endblock%}
+
+        </row>
+      </div>
     </div>
   </div>
-</div>
-
-<div class = "row">
-  <div class = "span12">
-
-    {%block footer%}
-
-    {%endblock%}
-
-  </div>
-</div>
 
 </body>
+
+<footer>
+  <div class = "row">
+    <div class = "span12">
+
+      {%block footer%}
+
+      {%endblock%}
+
+    </div>
+  </div>
+</footer>
 </html>

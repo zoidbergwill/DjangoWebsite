@@ -1,42 +1,43 @@
 {% extends "base.html" %}
+
 {% load staticfiles %}
+
 {% block slideshow %}
 {% endblock %}
 
 {% block content %}
 
-<h1>Announcements</h1>
-<hr />
+  <h1>Announcements</h1>
 
-{% if announcements %}
+  <hr />
 
-  <ul class="unstyled">
+  {% if announcements %}
 
-    {% for announcement in announcements %}
+    <ul class="unstyled">
 
-      <li>
-        <a href="{{ path }}{{ page_number }}{{ announcement.slug }}">
-              <h2 style="margin: 13px 0 0;">{{ announcement.title }}</h2></a>
+      {% for announcement in announcements %}
+
+        <li>
+          <a href="{{ path }}{{ page_number }}/{{ announcement.slug }}">
+            <h2 style="margin: 13px 0 0;">{{ announcement.title }}</h2>
+          </a>
           <p style="margin: 0 0 0;" class="muted text-left">
-              <small>Created on {{ announcement.pub_date }}</small>
+            <small>Created on {{ announcement.pub_date }}</small>
           </p>
-
           {{ announcement.body|safe }}
-
-      </li>
+        </li>
         <hr />
 
-    {% endfor %}
+      {% endfor %}
 
-  </ul>
+    </ul>
 
-{% else %}
+  {% else %}
 
-  <p>There are no posts.</p>
+    <p>There are no posts.</p>
 
-{% endif %}
+  {% endif %}
 
-<div class="container span8">
   <ul class="pager">
     <li
       {% if page_number == total_pages %}
@@ -59,6 +60,5 @@
         Newer &rarr;</a>
     </li>
   </ul>
-</div>
 
 {% endblock %}

@@ -5,7 +5,7 @@ import os
 
 UMONYA_BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 UMONYA_TEMPLATE_DIR = os.path.join(UMONYA_BASE_DIR, 'templates')
-UMONYA_STATIC_DIR = os.path.join(UMONYA_BASE_DIR, 'media')
+UMONYA_STATIC_DIR = os.path.join(UMONYA_BASE_DIR, 'static')
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -135,11 +135,10 @@ INSTALLED_APPS = (
     'apps.announcements',
     'apps.blog',
     'apps.contact',
-    'apps.course',
-    'apps.main',
     'apps.registration',
     'apps.resources',
-    'apps.sponsors',
+    'apps.sponsor_us',
+    'apps.utils',
     'debug_toolbar',
     'django_wysiwyg',
     'django.contrib.auth',

@@ -9,7 +9,7 @@ class TestPages(TestCase):
         self.assertTemplateUsed(response, "home.html")
 
     def test_announcement_page(self):
-        response = self.client.get("/announcements/page1")
+        response = self.client.get("/announcements/page1/")
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "home.html")
 

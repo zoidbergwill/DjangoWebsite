@@ -11,19 +11,42 @@
 		<hr />
 		<h1> Who we are </h1>
 		<hr />
-			{% for a in about %}
-				<div class = "span4" style = "margin: 0 13px 30px 0;">
-					<h3> {{ a.name }} </h3>
-					<hr />
 
-					<img src ="/static/{{ a.bios_photo }}" width = "200" />
+		{% for a in about %}
+			<div class = "span4" style = "margin: 0 13px 30px 0;">
+				<h3> {{ a.name }} </h3>
+				<hr />
 
-					<div class="">
-						{{ a.bios }}
-					</div>
+				<img src ="/static/{{ a.bios_photo }}" width = "200" />
+
+				<div class="">
+					{{ a.bios }}
 				</div>
 
-			{% endfor %}
+			</div>
+		{% endfor %}
+
 	</div>
+	<hr />
+
+	<h1>Sponsors</h1>
+	<hr />
+
+	{% if sponsors %}
+	  {% for a in sponsors %}
+	    <div class = "span4" style = "margin-bottom: 30px;">
+	       <h3> {{ a.name }} </h3>
+	    </div>
+	    <div class = "span4">
+	       <img src ="/static/sponsors/{{ a.photo }}" height = "300" />
+	    </div>
+	    <hr />
+	  {% endfor %}
+
+	{% else %}
+	  <p>There are no sponsors yet.</p>
+	{% endif %}
+
 </div>
+
 {% endblock %}

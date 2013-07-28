@@ -10,7 +10,7 @@ class AnnouncementAdmin(admin.ModelAdmin):
     list_filter = ('pub_date', )
     ordering = ('pub_date', )
     fields = ('title', 'body', 'event_date', 'venue')
-    change_form_template = 'main/change_form.html'
+    change_form_template = 'announcement/change_form.html'
 
 
 admin.site.register(Announcement, AnnouncementAdmin)

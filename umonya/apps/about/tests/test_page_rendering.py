@@ -1,6 +1,6 @@
 from django.test import TestCase
 from apps.about.models import About
-from apps.main.models import Page
+from apps.utils.models import Page
 import datetime
 from django.utils.timezone import utc
 from django.core.urlresolvers import reverse

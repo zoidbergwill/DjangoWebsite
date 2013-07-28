@@ -2,7 +2,7 @@ from django.shortcuts import render_to_response
 from django.core.context_processors import csrf
 from django.template import RequestContext
 from forms import ContactForm
-from apps.main.views import send_email_f
+from apps.utils.functions import send_email_f
 
 
 def contact(request):

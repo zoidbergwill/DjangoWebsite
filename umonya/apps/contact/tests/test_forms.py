@@ -1,6 +1,6 @@
 from apps.contact.forms import ContactForm
 from django.test import TestCase
-from apps.contact.views import send_email_f
+from apps.utils.functions import send_email_f
 
 
 class TestForms(TestCase):

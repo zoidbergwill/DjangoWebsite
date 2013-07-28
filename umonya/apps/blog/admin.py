@@ -7,6 +7,7 @@ from models import (BlogPost, BlogCategory)
 class BlogAdmin(admin.ModelAdmin):
     list_display = ('title', 'author', 'pub_date')
     fieldsets = [(None, {'fields': [('title', 'category', 'body')]}), ]
+    change_form_template = 'blog/change_form.html'
 
     def save_model(self, request, obj, form, change):
         if getattr(obj, 'author', None) is None:

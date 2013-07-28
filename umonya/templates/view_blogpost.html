@@ -1,10 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}
-  Umonya Blog &#124; Hello World
-    {% if blog_post %}
-       - {{ blog_post.title }}
-    {% endif %}
+  Umonya Blog &#124; Hello World {% if blog_post %} - {{ blog_post.title }} {% endif %}
 {% endblock %}
 
 {% block content %}
@@ -12,6 +9,7 @@
   {% if blog_post %}
 
     <h1>{{ blog_post.title }}</h1>
+
     <hr />
 
     <ul class="unstyled">
@@ -26,10 +24,10 @@
       <hr />
     </ul>
 
-    <div class="container span8">
+    <div class="span8">
       <ul class="pager">
         <li class="previous active">
-          <a href="page{{ page_number }}">&larr; Back</a>
+          <a href="/blog/page{{ page_number }}">&larr; Back</a>
         </li>
       </ul>
     </div>
@@ -40,16 +38,24 @@
 
 {%block categories%}
 
-    <h3>Categories</h3>
-    {% if blog_categories %}
-        <ul>
-        {% for category in blog_categories %}
-            <li><a href="{{ category.get_absolute_url }}">{{ category.title }}</a></li>
-        {% endfor %}
-        </ul>
-    {% else %}
-        <p>There are no categories.</p>
-    {% endif %}
+  <h3>Categories</h3>
 
+  {% if blog_categories %}
+
+    <ul>
+
+      {% for category in blog_categories %}
+
+          <li><a href="{{ category.get_absolute_url }}">{{ category.title }}</a></li>
+
+      {% endfor %}
+
+    </ul>
+
+  {% else %}
+
+    <p>There are no categories.</p>
+
+  {% endif %}
 
 {%endblock%}

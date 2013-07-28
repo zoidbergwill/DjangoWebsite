@@ -1,5 +1,5 @@
 from django.test import TestCase
-from apps.main.models import Dynamic_Section
+from apps.utils.models import Dynamic_Section
 from django.core.urlresolvers import reverse
 
 

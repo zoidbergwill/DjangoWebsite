@@ -1,35 +1,33 @@
 {% extends "base.html" %}
 
-
 {% block title %}{{ announcement.title }}{% endblock %}
-
 
 {% block content %}
 
-
-  <a href="{{ page_number }}{{ announcement.slug }}">
-    <h1 style="margin: 13px 0 0;">{{ announcement.title }}</h1></a>
+  <a href="{{ announcement.slug }}">
+    <h1 style="margin: 13px 0 0;">{{ announcement.title }}</h1>
+  </a>
 
   <hr />
 
   <ul class="unstyled" style="margin: 0 0 0;">
     <li>
-        <p class="muted text-left">
-            <small>Created on {{ announcement.pub_date }}</small>
-        </p>
+      <p class="muted text-left">
+        <small>Created on {{ announcement.pub_date }}</small>
+      </p>
 
-        {{ announcement.body|safe }}
+      {{ announcement.body|safe }}
 
     </li>
-    <hr />
   </ul>
 
-<div class="container span8">
+  <hr />
+
+
   <ul class="pager">
     <li class="previous active">
-      <a href="page{{ page_number }}">&larr; Back</a>
+      <a href="/announcements/page{{ page_number }}">&larr; Back</a>
     </li>
   </ul>
-</div>
 
 {% endblock %}

@@ -2,8 +2,6 @@
 
 {% block navigation %}
 
-
-
  <div class="navbar navbar-inverse">
   <div class="navbar-inner">
     <div class="container">
@@ -21,31 +19,25 @@
             <a class="{% navactive request 'blog' %}" href="/blog">Blog</a>
           </li>
           <li class="">
-            <a class="{% navactive request 'about' %}" href="/about">About Us</a>
+            <a class="{% navactive request 'about' %}" href="/about">About us</a>
           </li>
-
           {% if registration.enabled  %}
-
-              <li class="">
-                <a class="{% navactive request 'registration' %}" href="/registration">Registration Open</a>
-              </li>
-
+            <li class="">
+              <a class="{% navactive request 'registration' %}" href="/registration">Registration open</a>
+            </li>
           {% else %}
-
-              <li class="">
-                <a class="{% navactive request 'registration' %}" href="/registration">Registration Closed</a>
-              </li>
-
+            <li class="">
+              <a class="{% navactive request 'registration' %}" href="/registration">Registration closed</a>
+            </li>
           {% endif %}
-
           <li class="">
             <a class="{% navactive request 'resources' %}" href="/resources">Resources</a>
           </li>
           <li class="">
-            <a class="{% navactive request 'course' %}" href="/course">Course Schedule</a>
+            <a class="{% navactive request 'course' %}" href="/course">Course schedule</a>
           </li>
           <li class="">
-            <a class="{% navactive request 'sponsors' %}" href="/sponsors">Sponsors</a>
+            <a class="{% navactive request 'sponsor_us' %}" href="/sponsor_us">Sponsor us</a>
           </li>
           <li class="">
             <a class="{% navactive request 'contact' %}" href="/contact">Contact us</a>

@@ -2,8 +2,8 @@ from django.shortcuts import render_to_response
 from django.core.context_processors import csrf
 from django.template import RequestContext
 from forms import RegistrationForm
-from apps.main.views import send_email_f
-from apps.main.models import Dynamic_Section
+from apps.utils.functions import send_email_f
+from apps.utils.models import Dynamic_Section
 
 
 def registration(request):

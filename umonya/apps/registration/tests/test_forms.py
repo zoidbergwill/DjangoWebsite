@@ -1,8 +1,8 @@
-from apps.registration.forms import RegistrationForm
 from django.test import TestCase
-from apps.main.models import Dynamic_Section
+from apps.registration.forms import RegistrationForm
 from apps.registration.models import Registration
-from apps.main.views import send_email_f
+from apps.utils.functions import send_email_f
+from apps.utils.models import Dynamic_Section
 
 
 class TestForms(TestCase):
