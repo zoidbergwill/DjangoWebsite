@@ -5,5 +5,13 @@ python:
     - "pypy"
 install:
     - pip install -r umonya/requirements.txt --use-mirrors
+    - pip install --upgrade https://github.com/django-debug-toolbar/django-debug-toolbar/archive/master.zip
     - umonya/manage.py syncdb --noinput
-script: umonya/manage.py test main
+script:
+    - umonya/manage.py test apps/about
+    - umonya/manage.py test apps/announcements
+    - umonya/manage.py test apps/blog
+    - umonya/manage.py test apps/contact
+    - umonya/manage.py test apps/registration
+    - umonya/manage.py test apps/resources
+    - umonya/manage.py test apps/sponsor_us
