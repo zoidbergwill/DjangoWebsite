@@ -7,13 +7,11 @@ env:
     - DJANGO=1.5.1
 install:
     - pip install -q Django==$DJANGO --use-mirrors
-    - pip install pep8 --use-mirrors
     - pip install https://github.com/dcramer/pyflakes/tarball/master
     - pip install -r umonya/requirements.txt --use-mirrors
     - pip install --upgrade https://github.com/django-debug-toolbar/django-debug-toolbar/archive/master.zip
     - umonya/manage.py syncdb --noinput
 before_script:
-    - "pep8 --exclude=migrations --ignore=E501,E225 src"
     - pyflakes -x W src
 script:
     - umonya/manage.py test apps
