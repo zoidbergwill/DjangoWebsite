@@ -14,4 +14,4 @@ install:
 before_script:
     - pyflakes -x W src
 script:
-    - umonya/manage.py test apps
+    - umonya/manage.py test
