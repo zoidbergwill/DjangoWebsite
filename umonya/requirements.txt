@@ -1,9 +1,9 @@
 django-debug-toolbar==0.9.4
 django-wysiwyg==0.5.1
-Django==1.6
+Django==1.5.1
 gdata==2.0.18
 httplib2==0.8
 oauth2client==1.1
 PIL==1.1.7
-Pillow-PIL
+Pillow-PIL==0.1dev
 python-gflags==2.0
